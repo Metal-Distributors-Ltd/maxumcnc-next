@@ -1,21 +1,4 @@
-import fs from "fs";
-import path from "path";
-
-function getGalleryImages() {
-  const imagesDir = path.join(process.cwd(), "public", "images");
-  try {
-    const files = fs.readdirSync(imagesDir);
-    return files.filter((file) =>
-      /\.(png|jpe?g|gif|webp|svg)$/i.test(file)
-    );
-  } catch {
-    return [];
-  }
-}
-
 export default function Home() {
-  const gallery = getGalleryImages();
-
   return (
     <div className="page">
       <header className="site-header">
@@ -25,7 +8,6 @@ export default function Home() {
             <a href="#top">Home</a>
             <a href="#capabilities">Capabilities</a>
             <a href="#industries">Industries</a>
-            <a href="#gallery">Gallery</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
@@ -105,7 +87,8 @@ export default function Home() {
                 <h3>Core Capabilities</h3>
                 <p>
                   3-axis and 5-axis milling, turning and drilling. Small to
-                  medium parts, complex geometries and tight-tolerance features.
+                  medium parts, complex geometries and tight-tolerance
+                  features.
                 </p>
               </div>
               <div className="card">
@@ -165,14 +148,39 @@ export default function Home() {
           </div>
         </section>
 
-        {/* GALLERY – ALL FILES IN /public/images */}
-        {gallery.length > 0 && (
-          <section id="gallery" className="section">
-            <div className="container">
-              <p className="section-heading">IN THE SHOP</p>
-              <h2 className="section-title">
-                A look at Maxum CNC machining and components.
-              </h2>
-              <p className="section-lead">
-                Images are pulled directly from the Maxum CNC image library and
-                update automatically as we add new photos.
+        {/* CONTACT / WE ARE HERE TO HELP */}
+        <section id="contact" className="section">
+          <div className="container">
+            <p className="section-heading">WE ARE HERE TO HELP</p>
+            <div className="contact-block">
+              <p>
+                Send us a drawing, model or even a rough sketch. We&apos;ll
+                review your requirements, confirm feasibility and timing, and
+                provide a quote.
+              </p>
+              <ul className="contact-list">
+                <li>
+                  <strong>Phone:</strong> 604-420-3731 / 1-877-420-3731
+                </li>
+                <li>
+                  <strong>Email:</strong> info@metaldist.com
+                </li>
+                <li>
+                  <strong>Address:</strong> 31453 King Rd, Unit 160,
+                  Abbotsford, BC V2T 5Z2
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="site-footer">
+        <div className="container">
+          © {new Date().getFullYear()} Metal Distributors Limited · Proudly
+          Made in Canada
+        </div>
+      </footer>
+    </div>
+  );
+}
