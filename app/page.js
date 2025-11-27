@@ -1,86 +1,210 @@
-import Link from "next/link";
+import fs from "fs";
+import path from "path";
 
-export default function HomePage() {
-  return (
-    <div className="bg-black text-white">
-      {/* HERO */}
-      <section className="relative h-screen w-full overflow-hidden">
-        {/* Video background */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover"
-          src="/maxum-video-bg.mp4"   // <- put the video in /public with this name
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
-
-        {/* Subtle dark gradient ONLY at very bottom so footer transition feels smooth */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/80 to-black/0" />
-
-        {/* Content */}
-        <div className="relative z-10 h-full flex items-center">
-          <div className="container">
-            <p className="section-label mb-4">Precision CNC Machining</p>
-
-            <h1 className="text-[clamp(2.5rem,4vw,3.5rem)] md:text-6xl font-semibold leading-tight drop-shadow-[0_0_20px_rgba(0,0,0,0.9)]">
-              Custom Milling, Turning &amp; Tooling
-            </h1>
-
-            <p className="mt-4 max-w-2xl text-base md:text-lg text-gray-200 drop-shadow-[0_0_12px_rgba(0,0,0,0.85)]">
-              Lead (Pb), zinc (Zn), aluminum (Al) and steel — small and medium
-              metal parts, fixtures and tooling.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/contact" className="btn-primary">
-                Contact Us
-              </Link>
-              <Link href="/services" className="btn-ghost">
-                View Services
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SIMPLE “WHAT WE DO” SECTION (very minimal copy) */}
-      <section className="py-16 md:py-20 bg-black">
-        <div className="container grid md:grid-cols-3 gap-10 md:gap-12">
-          <div className="md:col-span-2">
-            <p className="section-label mb-3">What We Do</p>
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-              Custom metal machining in lead, zinc, aluminum and steel.
-            </h2>
-            <p className="text-sm md:text-base text-gray-200 max-w-2xl">
-              We machine custom metal components and tooling with a focus on
-              consistent quality and clear communication. Jobs are scoped on a
-              case-by-case basis — from one-off parts to repeat production runs.
-            </p>
-          </div>
-
-          <div className="space-y-4 text-sm md:text-base text-gray-200">
-            <div>
-              <p className="font-semibold uppercase tracking-[0.18em] text-xs text-gray-400">
-                Materials
-              </p>
-              <p>Lead, zinc, aluminum and steel.</p>
-            </div>
-            <div>
-              <p className="font-semibold uppercase tracking-[0.18em] text-xs text-gray-400">
-                Typical Work
-              </p>
-              <p>Small and medium machined parts, fixtures and tooling.</p>
-            </div>
-            <div>
-              <p className="font-semibold uppercase tracking-[0.18em] text-xs text-gray-400">
-                Location
-              </p>
-              <p>Abbotsford, BC — serving customers across Canada and beyond.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+function getGalleryImages() {
+  const imagesDir = path.join(process.cwd(), "public", "images");
+  try {
+    const files = fs.readdirSync(imagesDir);
+    return files.filter((file) =>
+      /\.(png|jpe?g|gif|webp|svg)$/i.test(file)
+    );
+  } catch {
+    return [];
+  }
 }
+
+export default function Home() {
+  const gallery = getGalleryImages();
+
+  return (
+    <div className="page">
+      <header className="site-header">
+        <div className="container nav">
+          <div className="logo">MAXUM CNC</div>
+          <nav className="nav-links">
+            <a href="#top">Home</a>
+            <a href="#capabilities">Capabilities</a>
+            <a href="#industries">Industries</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="top">
+        {/* HERO WITH VIDEO BACKGROUND */}
+        <section className="hero">
+          <div className="hero-video-wrap">
+            <video className="hero-video" autoPlay muted loop playsInline>
+              <source src="/maxum-video-bg.mp4" type="video/mp4" />
+            </video>
+            <div className="hero-overlay" />
+          </div>
+
+          <div className="container hero-grid">
+            <div>
+              <p className="hero-kicker">PRECISION CNC MACHINING</p>
+              <h1 className="hero-title">
+                Specializing in Lead (Pb), Zinc (Zn), Aluminum (Al) &amp; Steel
+              </h1>
+              <p className="hero-body">
+                Custom CNC machining for small and medium metal components,
+                fixtures and tooling. From one-off prototypes to repeat
+                production runs, we deliver tight tolerances, smooth finishes
+                and dependable lead times.
+              </p>
+              <div className="hero-actions">
+                <a href="#contact" className="btn-primary">
+                  Contact Us
+                </a>
+                <a href="#capabilities" className="btn-secondary">
+                  View Capabilities
+                </a>
+              </div>
+              <p className="hero-meta">
+                We ship worldwide from Abbotsford, British Columbia, Canada.
+              </p>
+            </div>
+
+            <div className="hero-side">
+              <div className="hero-card">
+                <h3>Proudly Made in Canada</h3>
+                <p>
+                  Maxum CNC is part of Metal Distributors Limited, a Canadian
+                  foundry and manufacturing group serving marine, construction
+                  and industrial customers.
+                </p>
+                <p>
+                  <strong>Phone:</strong> 604-420-3731 / 1-877-420-3731
+                  <br />
+                  <strong>Email:</strong> info@metaldist.com
+                  <br />
+                  <strong>Location:</strong> 31453 King Rd, Unit 160,
+                  Abbotsford, BC V2T 5Z2
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CAPABILITIES */}
+        <section id="capabilities" className="section">
+          <div className="container">
+            <p className="section-heading">WHAT WE DO</p>
+            <h2 className="section-title">
+              CNC machining from prototype to production.
+            </h2>
+            <p className="section-lead">
+              Maxum CNC supports one-off parts, short runs and medium-volume
+              production, with deep experience in soft metals most shops avoid:
+              lead, zinc and aluminum.
+            </p>
+
+            <div className="section-grid">
+              <div className="card">
+                <h3>Core Capabilities</h3>
+                <p>
+                  3-axis and 5-axis milling, turning and drilling. Small to
+                  medium parts, complex geometries and tight-tolerance features.
+                </p>
+              </div>
+              <div className="card">
+                <h3>Soft Metal Specialists</h3>
+                <p>
+                  Lead (Pb) parts for radiation shielding, zinc (Zn) for marine
+                  anodes and cast components, aluminum (Al) fixtures and
+                  housings, plus steel where needed.
+                </p>
+              </div>
+              <div className="card">
+                <h3>Tooling &amp; Fixtures</h3>
+                <p>
+                  Custom tooling plates, production jigs, holding fixtures and
+                  assemblies for internal MDL operations and external clients.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* INDUSTRIES */}
+        <section id="industries" className="section">
+          <div className="container">
+            <p className="section-heading">INDUSTRIES WE SERVE</p>
+            <h2 className="section-title">
+              Marine, industrial, construction and custom engineering.
+            </h2>
+            <p className="section-lead">
+              Backed by MDL&apos;s casting and metal distribution operations,
+              Maxum CNC supplies machined components into multiple sectors.
+            </p>
+
+            <div className="section-grid">
+              <div className="card">
+                <h3>Marine &amp; Corrosion</h3>
+                <p>
+                  Machined sacrificial anode components, brackets and hardware
+                  for commercial and recreational marine applications.
+                </p>
+              </div>
+              <div className="card">
+                <h3>Industrial &amp; HVAC</h3>
+                <p>
+                  Custom brackets, housings and fixtures for industrial
+                  fabrication, HVAC and mechanical product manufacturers.
+                </p>
+              </div>
+              <div className="card">
+                <h3>Medical &amp; Shielding</h3>
+                <p>
+                  Lead components and custom metal parts supporting radiation
+                  shielding and specialty engineered solutions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* GALLERY – ALL FILES IN /public/images */}
+        {gallery.length > 0 && (
+          <section id="gallery" className="section">
+            <div className="container">
+              <p className="section-heading">IN THE SHOP</p>
+              <h2 className="section-title">
+                A look at Maxum CNC machining and components.
+              </h2>
+              <p className="section-lead">
+                Images are pulled directly from the Maxum CNC image library and
+                update automatically as we add new photos.
+              </p>
+
+              <div className="gallery-grid">
+                {gallery.map((file) => (
+                  <div key={file} className="gallery-item">
+                    <img
+                      src={`/images/${file}`}
+                      alt={file}
+                      className="gallery-img"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* CONTACT / WE ARE HERE TO HELP */}
+        <section id="contact" className="section">
+          <div className="container">
+            <p className="section-heading">WE ARE HERE TO HELP</p>
+            <div className="contact-block">
+              <p>
+                Send us a drawing, model or even a rough sketch. We&apos;ll
+                review your requirements, confirm feasibility and timing, and
+                provide a quote.
+              </p>
+              <ul className="contact-list">
+                <li>
+                  <strong>Phone:</strong> 604-420-3731 / 1-877-420-3731
+                </li>
+                <li>

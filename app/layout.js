@@ -1,20 +1,18 @@
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Maxum CNC",
-  description: "Precision CNC machining in lead, zinc, aluminum and steel.",
+  title: "Maxum CNC | Precision CNC Machining",
+  description:
+    "Precision CNC machining in lead, zinc, aluminum and steel. Prototypes, small runs and production machining.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-black text-white antialiased">
-        <Navbar />
-        <main className="pt-32">{children}</main>
-        <Footer />
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
