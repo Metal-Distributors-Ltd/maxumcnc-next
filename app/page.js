@@ -176,35 +176,3 @@ export default function Home() {
               <p className="section-lead">
                 Images are pulled directly from the Maxum CNC image library and
                 update automatically as we add new photos.
-              </p>
-
-              <div className="gallery-grid">
-                {gallery.map((file) => (
-                  <div key={file} className="gallery-item">
-                    <img
-                      src={`/images/${file}`}
-                      alt={file}
-                      className="gallery-img"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* CONTACT / WE ARE HERE TO HELP */}
-        <section id="contact" className="section">
-          <div className="container">
-            <p className="section-heading">WE ARE HERE TO HELP</p>
-            <div className="contact-block">
-              <p>
-                Send us a drawing, model or even a rough sketch. We&apos;ll
-                review your requirements, confirm feasibility and timing, and
-                provide a quote.
-              </p>
-              <ul className="contact-list">
-                <li>
-                  <strong>Phone:</strong> 604-420-3731 / 1-877-420-3731
-                </li>
-                <li>
