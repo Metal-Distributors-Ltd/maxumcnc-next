@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow&family=Train+One&family=Kaushan+Script&family=Bebas+Neue&family=Oswald:wght@200;300;500;600;700&family=Roboto+Condensed:wght@300;400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Archivo Narrow", sans-serif;
+  width: 100vw;
+}
+@layer base {
+  
+  h1, h2, h3, h4, h5 {
+    @apply font-bold
+  }
+
+  h1 {
+    @apply text-6xl font-boldHeading font-bold tracking-wide
+  }
+
+  h2 {
+    @apply text-4xl font-heading font-medium
+  }
+
+div {
+  @apply tracking-wide
+}
+
+
+  label {
+    @apply block my-2
+  }
+
+  input, textarea {
+    @apply bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+  }
+
+  button {
+    @apply text-white font-bold py-2 px-4 rounded mt-4
+  }
+
+  Link {
+
+  }
+}
