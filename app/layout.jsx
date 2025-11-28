@@ -1,6 +1,6 @@
-import "@styles/globals.css";
-import Nav from "@components/Nav";
-import Footer from "@components/Footer";
+import "../styles/globals.css";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 
 export const metadata = {
   title: "Maxum CNC",
@@ -16,7 +16,7 @@ const RootLayout = ({ children }) => {
       <body>
         <div>
           <main>
-            <Nav />            
+            <Nav />
             {children}
             <Footer />
           </main>

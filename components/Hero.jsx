@@ -1,31 +1,33 @@
+"use client";
+
 import Image from "next/image";
-// import bg1 from "../public/images/maxum-home";
-import Link from "next/link";
-import Home from "@app-delete/page";
 
 const Hero = ({ heading, message, img }) => {
   return (
-    <div className="relative flex flex-col items-center w-[100%]">
-      <Image
-        src={img}
-        width={1000}
-        height={800}
-        style={{ objectFit: "cover" }}
-        className="z[0] w-screen h-screen"
-      />
-      <div className="absolute top-0 md:top-0 flex flex-col items-center bg-black/30 text-white text-center z-[50] py-8 px-[75px] md:px-[250px] w-screen h-screen">
-        <div className="absolute top-[35%]">
-          <h1 className="text-white font-boldHeading text-6xl tracking-wider top-[30%] px-2 z-[20]">
+    <div className="relative flex w-full items-center justify-center">
+      {/* Background image */}
+      <div className="relative h-[70vh] w-screen md:h-[80vh]">
+        <Image
+          src={img}
+          alt={heading || "Maxum CNC"}
+          fill
+          priority
+          className="object-cover"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/35" />
+      </div>
+
+      {/* Text overlay */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="px-6 text-center md:px-24 lg:px-48">
+          <h1 className="text-4xl tracking-wider text-white md:text-5xl lg:text-6xl">
             {heading}
           </h1>
-          <p className="py-6 px-2 font-heading text-center text-2xl md:text-3xl text-white font-light z-[10]">
+          <p className="mt-6 text-lg font-light text-white md:text-2xl">
             {message}
           </p>
         </div>
-
-        {/* <button className="text-white font-boldHeading text-4xl tracking-wider z-[10]  px-4 py-2 border-2 rounded-lg hover:bg-white hover:text-gray-500">
-          <Link href={"/contact"}>Contact US</Link>
-        </button> */}
       </div>
     </div>
   );
