@@ -19,7 +19,7 @@ const Hero = () => {
           Precision Machining services
         </h1>
         <p className="py-6 font-heading text-center text-2xl md:text-3xl text-white font-light z-[10]">
-          Based in Burnaby, BC
+          Based in Abbotsford, BC
         </p>
 
         <button className="text-white font-boldHeading text-4xl tracking-wider z-[10]  px-4 py-2 border-2 rounded-lg hover:bg-white hover:text-gray-500">

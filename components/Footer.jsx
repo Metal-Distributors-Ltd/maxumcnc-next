@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { GiRotaryPhone } from "react-icons/gi";
@@ -8,45 +7,80 @@ import { GrMapLocation } from "react-icons/gr";
 
 const Footer = () => {
   return (
-    <>
-      <div className="flex flex-col lg:flex-row items-center lg:justify-between bg-black h-[15%] lg:h-[100px] w-[100%] z-0">
-        <div className="lg:w-[100%]">
-        <h4 className="text-white text-2xl lg:text-3xl tracking-wider font-serif bold italic text-center lg:text-left py-4 lg:pt-1 lg:pb-2 lg:px-4">
-        <Link href="/contact">We Ship Worldwide! Contact Us Today:</Link>
-        </h4>
-          <ul className="text-white flex flex-col md:flex-row  pl-[12%] lg:pl-4 md:pl-0 text-left w-[100%] md:w-[100%]">
-            <li className="flex items-center">
-              <GiRotaryPhone size={30} />{" "}
-              <p className="pl-2 md:pr-6 lg:pr-12 text-sm">
-                (604) 420 3731 / 1 (877) 420 3731
-              </p>
-            </li>
-            <li className="flex items-center">
-              <IoIosMail size={30} />
-              <p className="pl-2 md:pr-6 lg:pr-12 text-sm">info@metaldist.com</p>
-            </li>
-            <li className="flex items-center">
-              <TbMap2 size={30} />
-              <p className="pl-2 text-sm">
-                7220 Winston Street, Burnaby, BC V5A 2G9
-              </p>
-            </li>
-          </ul>
+    <footer className="bg-black text-gray-200 mt-16">
+      {/* Contact strip */}
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-12 md:grid-cols-4">
+        {/* Address */}
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-4 rounded-full bg-accent2 p-5">
+            <TbMap2 className="text-3xl text-white" />
+          </div>
+          <h3 className="mb-3 text-lg font-semibold">Address</h3>
+          <p>31453 King Rd, Unit 160</p>
+          <p>Abbotsford, BC V2T 5Z2</p>
         </div>
 
-        <div className="flex justify-center lg:justify-end items-center w-[100%] py-2.5">
-          <Image
-            className="flex pr-2"
-            src="/images/made-in-canada-maxum.png"
-            width={80}
-            height={50}
-          />
-          <div className="flex flex-col text-white text-s lg:text-base text-left font-fancy w-[25%] lg:w-[15%] lg:pl-2">
-            <p>PROUDLY</p> <p>MADE IN</p> <p>CANADA</p>
+        {/* Email */}
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-4 rounded-full bg-accent2 p-5">
+            <IoIosMail className="text-3xl text-white" />
           </div>
+          <h3 className="mb-3 text-lg font-semibold">Email</h3>
+          <Link
+            href="mailto:info@metaldist.com"
+            className="hover:text-accent2 transition-colors"
+          >
+            info@metaldist.com
+          </Link>
+        </div>
+
+        {/* Phone */}
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-4 rounded-full bg-accent2 p-5">
+            <GiRotaryPhone className="text-3xl text-white" />
+          </div>
+          <h3 className="mb-3 text-lg font-semibold">Phone</h3>
+          <p>604-420-3731</p>
+          <p>1-877-420-3731 (toll-free)</p>
+        </div>
+
+        {/* Map link */}
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-4 rounded-full bg-accent2 p-5">
+            <GrMapLocation className="text-3xl text-white" />
+          </div>
+          <h3 className="mb-3 text-lg font-semibold">Find Us</h3>
+          <Link
+            href="https://maps.app.goo.gl/B8i4bjxzoKX8aQFZ8"
+            target="_blank"
+            className="hover:text-accent2 transition-colors"
+          >
+            View on Google Maps
+          </Link>
         </div>
       </div>
-    </>
+
+      {/* Proudly Made in Canada strip */}
+      <div className="border-t border-gray-700">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-6 md:flex-row">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/images/made-in-canada-maxum.png"
+              alt="Proudly made in Canada"
+              width={60}
+              height={60}
+            />
+            <p className="text-sm tracking-[0.25em] uppercase">
+              Proudly Made in Canada
+            </p>
+          </div>
+          <p className="text-xs text-gray-400">
+            © {new Date().getFullYear()} Maxum CNC · Metal Distributors Ltd. All
+            rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 };
 
